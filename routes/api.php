@@ -10,6 +10,7 @@ Route::group(['prefix'=>'/api/v1'],function(){
 
     Route::post('/login',[LoginController::class,'login']);
     Route::get('/logout',[LogoutController::class,'logout']);
+
     Route::group(['middleware'=>'auth:sanctum'],function(){
 
     });
