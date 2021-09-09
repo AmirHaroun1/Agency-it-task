@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApiControllers\Auth\LoginController;
+use App\Http\Controllers\ApiControllers\Auth\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/login',[LoginController::class,'login']);
+Route::get('/logout',[LogoutController::class,'logout']);
+

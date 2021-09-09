@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['prefix'=>'/api/v1'],function(){
+Route::group(['prefix'=>'v1.0'],function(){
 
     Route::post('/login',[LoginController::class,'login']);
-    Route::get('/logout',[LogoutController::class,'logout']);
 
     Route::group(['middleware'=>'auth:sanctum'],function(){
+        Route::get('/logout',[LogoutController::class,'logout']);
 
+        Route::group(['middleware'=>'IsAdmin'],function(){
+
+        });
     });
 
 });
