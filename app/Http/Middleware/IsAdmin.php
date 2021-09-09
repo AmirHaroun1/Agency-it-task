@@ -17,9 +17,9 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-         $isAdmin = Auth::user()->is_admin;
+        $isAdmin = Auth::user()->is_admin;
         if (!$isAdmin){
-            return response()->json('',403);
+            return response()->json(['error'=>'Not Authorized'],403);
         }
         return $next($request);
     }
