@@ -16,6 +16,6 @@ class PerformanceReview extends Model
     }
     public function reviewers(){
         return $this->belongsToMany(User::class,'performance_reviews_reviewees_reviewers','performance_id','reviewer_id')
-            ->withPivot(['feedback','status','created_at']);
+            ->withPivot(['reviewee_id','feedback','status','created_at']);
     }
 }
