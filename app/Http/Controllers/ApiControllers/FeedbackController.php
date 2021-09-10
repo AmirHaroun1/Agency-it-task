@@ -13,11 +13,14 @@ class FeedbackController extends Controller
 {
     //
     public function index(){
-      $PerformanceReviews =  PerformanceReview::whereHas('reviewees',function($query){
-                $query->where('performance_reviews_reviewees_reviewers.reviewer_id',Auth::id());
-        })->with(['reviewees'=>function($query){
+
+    $PerformanceReviews = PerformanceReview::join('performance_reviews_reviewees_reviewers','performance_reviews_reviewees_reviewers.performance_id','=','performance_reviews.id')
+                                ->select('performance_reviews.*')
+                                ->where('performance_reviews_reviewees_reviewers.reviewer_id',Auth::id())
+                                ->paginate(10);
+      $PerformanceReviews->load(['reviewees'=>function($query){
           $query->where('performance_reviews_reviewees_reviewers.reviewer_id',Auth::id());
-      }])->paginate(10);
+      }]);
       return PerformanceReviewResource::collection($PerformanceReviews);
     }
     public function store(Request $request,PerformanceReview $PerformanceReview,$reviewee_id){
