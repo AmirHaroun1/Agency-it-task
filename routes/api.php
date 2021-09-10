@@ -20,7 +20,7 @@ Route::group(['prefix'=>'v1.0'],function(){
         Route::group(['as'=>'admin.'],function(){
                 Route::apiResource('/Admin/Employees',AdminEmployeeController::class);
                 Route::apiResource('/Admin/PerformanceReview',AdminPerformanceReviewController::class);
-                Route::post('/Admin/PerformanceReviews/{PerformanceReview}/Reviewee/{Reviewee}',[AdminPerformanceReviewRevieweeController::class,'store']);
+                Route::post('/Admin/PerformanceReviews/{PerformanceReview}/Reviewee/{Reviewee}',[AdminPerformanceReviewRevieweeController::class,'store'])->middleware('AssignReviewee');
                 Route::post('/Admin/PerformanceReviews/{PerformanceReview}/Reviewee/{Reviewee_id}/Reviewer/{Reviewer_id}',[AdminPerformanceReviewRevieweeReviewerController::class,'store']);
         });
     });
