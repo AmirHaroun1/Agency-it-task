@@ -1,8 +1,8 @@
-<p align="center">
-<a href="https://www.postman.com/grey-firefly-242861/workspace/agency-it-task" target="_blank">
-AGENCY - IT Full-stack Task
-</a>
-</p>
+<h2 align="center">
+    <a href="https://www.postman.com/grey-firefly-242861/workspace/agency-it-task" target="_blank">
+    AGENCY - IT Full-stack Task
+    </a>
+</h2>
 
 ## Introduction
 
