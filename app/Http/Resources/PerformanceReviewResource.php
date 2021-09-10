@@ -17,7 +17,8 @@ class PerformanceReviewResource extends JsonResource
         return [
             'id' => $this->id,
             'content' => $this->content,
-            'created_at'=> $this->created_at
+            'reviewees' => PerformanceReviewRevieweeResource::collection($this->whenLoaded('reviewees')),
+            'created_at'=> $this->created_at,
         ];
     }
 }
