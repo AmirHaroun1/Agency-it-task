@@ -9,6 +9,6 @@ use Illuminate\Http\Request;
 class AdminPerformanceReviewRevieweeReviewerController extends Controller
 {
     public function store(PerformanceReview $performanceReview,$reviewee_id,$reviewer_id){
-        $performanceReview->reviewees()->updateExistingPivot($reviewee_id,['reviewer_id'=>$reviewer_id])
+        $performanceReview->reviewees()->updateExistingPivot($reviewee_id,['reviewer_id'=>$reviewer_id]);
     }
 }

@@ -12,10 +12,11 @@ class PerformanceReview extends Model
 
     public function reviewees(){
         return $this->belongsToMany(User::class,'performance_reviews_reviewees_reviewers','performance_id','reviewee_id')
-            ->withPivot(['created_at']);
+            ->withPivot(['created_at'])->withTimestamps();
     }
     public function reviewers(){
         return $this->belongsToMany(User::class,'performance_reviews_reviewees_reviewers','performance_id','reviewer_id')
-            ->withPivot(['reviewee_id','feedback','status','created_at']);
+            ->withPivot(['reviewee_id','feedback','status','created_at'])
+            ->withTimestamps();
     }
 }

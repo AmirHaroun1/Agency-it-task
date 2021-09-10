@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class AdminPerformanceReviewRevieweeController extends Controller
 {
-    public function store(User $user,PerformanceReview $performanceReview){
+    public function store(PerformanceReview $performanceReview,User $user){
         $performanceReview->reviewees()->attach($user->id);
     }
 }
