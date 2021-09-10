@@ -46,7 +46,7 @@ class User extends Authenticatable
     public function IsAdmin(){
         return $this->is_admin;
     }
-    public function Reviewers(){
+    public function reviewers(){
         return $this->belongsToMany(User::class,'performance_reviews_reviewees_reviewers','reviewee_id','reviewer_id')
             ->withPivot(['created_at','feedback','status'])->withTimestamps();
     }
