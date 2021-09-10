@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PerformanceReviewResource extends JsonResource
+class PerformanceReviewRevieweeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,10 +14,6 @@ class PerformanceReviewResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'content' => $this->content,
-            'created_at'=> $this->created_at
-        ];
+
     }
 }
