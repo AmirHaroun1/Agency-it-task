@@ -12,6 +12,7 @@ class PerformanceReview extends Model
 
     public function reviewees(){
         return $this->belongsToMany(User::class,'performance_reviews_reviewees_reviewers','performance_id','reviewee_id')
+            ->withPivot(['feedback','status','reviewee_id','reviewer_id'])
             ->withTimestamps();
     }
     public function reviewers(){
