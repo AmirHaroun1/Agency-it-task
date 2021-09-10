@@ -9,7 +9,7 @@ it was amazing working on this task using Laravel, it wasn't mentioned whether i
 <br />
 For Testing The Apis i used postman , please check **[Task's PostMan Environment](https://www.postman.com/grey-firefly-242861/workspace/agency-it-task/collection/11934912-363ccaa8-bfcc-48ea-8c86-2f4b90d7da1c)** 
 <br />
-along the project there were some parts where we could replace eloquent with simple joins to improve the Performance, but this is a laravel task after all !.
+along the project there were some parts where we could replace eloquent with simple joins to improve the Performance, but this is a laravel task after all .
 <br />
 <br />
 **AUTHINTECATION**
