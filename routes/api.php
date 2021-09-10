@@ -18,11 +18,11 @@ Route::group(['prefix'=>'v1.0'],function(){
     Route::group(['middleware'=>'auth:sanctum'],function(){
         Route::get('/logout',[LogoutController::class,'logout']);
 
-        Route::group(['as'=>'admin.'],function(){
-                Route::apiResource('/Admin/Employees',AdminEmployeeController::class);
-                Route::apiResource('/Admin/PerformanceReview',AdminPerformanceReviewController::class);
-                Route::post('/Admin/PerformanceReviews/{PerformanceReview}/Reviewee/{Reviewee}',[AdminPerformanceReviewRevieweeController::class,'store'])->middleware('AssignReviewee');
-                Route::post('/Admin/PerformanceReviews/{PerformanceReview}/Reviewee/{Reviewee_id}/Reviewer/{Reviewer_id}',[AdminPerformanceReviewRevieweeReviewerController::class,'store']);
+        Route::group(['as'=>'admin.','prefix'=>'Admin'],function(){
+                Route::apiResource('/Employees',AdminEmployeeController::class);
+                Route::apiResource('//PerformanceReview',AdminPerformanceReviewController::class);
+                Route::post('/PerformanceReviews/{PerformanceReview}/Reviewee/{Reviewee}',[AdminPerformanceReviewRevieweeController::class,'store'])->middleware('AssignReviewee');
+                Route::post('/PerformanceReviews/{PerformanceReview}/Reviewee/{Reviewee_id}/Reviewer/{Reviewer_id}',[AdminPerformanceReviewRevieweeReviewerController::class,'store']);
         });
         Route::get('/FeedBacks',[FeedbackController::class,'index']);
         Route::post('/FeedBacks/PerformanceReviews/{PerformanceReview}/Reviewee/{Reviewee_id}',[FeedbackController::class,'store']);
