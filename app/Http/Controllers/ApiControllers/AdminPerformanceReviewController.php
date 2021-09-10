@@ -14,7 +14,7 @@ class AdminPerformanceReviewController extends Controller
         if (Auth::user()->cannot('ViewAny',PerformanceReview::class)){
             return response()->json(['error'=>'Not Authorized'],403);
         }
-        $performanceReviews = PerformanceReview::with('reviewees')->paginate(10);
+        $performanceReviews = PerformanceReview::with(['reviewees'])->latest()->get();
 
         return PerformanceReviewResource::collection($performanceReviews);
     }
@@ -26,23 +26,27 @@ class AdminPerformanceReviewController extends Controller
 
        return new PerformanceReviewResource($performanceReview);
     }
-   public function show(PerformanceReview $performanceReview){
-       if (Auth::user()->cannot('view',$performanceReview)){
-           return response()->json(['error'=>'Not Authorized'],403);
-       }
-       $performanceReview->load('reviewees');
+   public function show(PerformanceReview $PerformanceReview){
 
-       return new PerformanceReviewResource($performanceReview);
-   }
-   public function update(Request $request,PerformanceReview $performanceReview){
-       if (Auth::user()->cannot('update',PerformanceReview::class)){
+       if (Auth::user()->cannot('view',$PerformanceReview)){
            return response()->json(['error'=>'Not Authorized'],403);
        }
-       $performanceReview->update($request->all());
-       return new PerformanceReviewResource($performanceReview);
+       $PerformanceReview->load(['reviewees'=>function($query)use($PerformanceReview){
+           $query->latest()->with(['reviewers'=>function($innerQuery)use($PerformanceReview){
+               $innerQuery->latest()->where('performance_reviews_reviewees_reviewers.performance_id',$PerformanceReview->id);
+           }]);
+       }]);
+       return new PerformanceReviewResource($PerformanceReview);
    }
-   public function destroy(PerformanceReview $performanceReview){
-       $performanceReview->delete();
+   public function update(Request $request,PerformanceReview $PerformanceReview){
+       if (Auth::user()->cannot('update',$PerformanceReview)){
+           return response()->json(['error'=>'Not Authorized'],403);
+       }
+       $PerformanceReview->update($request->all());
+       return new PerformanceReviewResource($PerformanceReview);
+   }
+   public function destroy(PerformanceReview $PerformanceReview){
+       $PerformanceReview->delete();
        return response()->json(['Message' => 'PerformanceReview Deleted Successfully'],200);
    }
 

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\PerformanceReview;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -39,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('Employee', User::class);
         Route::model('Reviewee', User::class);
         Route::model('Reviewer', User::class);
+        Route::model('PerformanceReview', PerformanceReview::class);
 
         $this->configureRateLimiting();
 

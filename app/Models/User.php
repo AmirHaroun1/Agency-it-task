@@ -48,6 +48,7 @@ class User extends Authenticatable
     }
     public function reviewers(){
         return $this->belongsToMany(User::class,'performance_reviews_reviewees_reviewers','reviewee_id','reviewer_id')
-            ->withPivot(['created_at','feedback','status'])->withTimestamps();
+            ->withPivot(['feedback','status'])
+            ->withTimestamps();
     }
 }

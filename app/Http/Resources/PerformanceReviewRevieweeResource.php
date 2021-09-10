@@ -18,6 +18,7 @@ class PerformanceReviewRevieweeResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'reviewers' => RevieweeReviewerResoruce::collection($this->whenLoaded('reviewers')),
             'added_to_review_at' => $this->pivot->created_at,
         ];
     }
