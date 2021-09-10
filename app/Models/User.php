@@ -46,8 +46,23 @@ class User extends Authenticatable
     public function IsAdmin(){
         return $this->is_admin;
     }
+    /**
+     * Many To Many Relationship.
+     *
+     * in case of User is Reviewee it allows him to get the reviewers
+     */
     public function reviewers(){
         return $this->belongsToMany(User::class,'performance_reviews_reviewees_reviewers','reviewee_id','reviewer_id')
+            ->withPivot(['feedback','status'])
+            ->withTimestamps();
+    }
+    /**
+     * Many To Many Relationship.
+     *
+     * in case of User is Reviewer it allows him to get the The Performance Reviews that he should review
+     */
+    public function PerformanceReviews(){
+        return $this->belongsToMany(PerformanceReview::class,'performance_reviews_reviewees_reviewers','reviewer_id','performance_id')
             ->withPivot(['feedback','status'])
             ->withTimestamps();
     }
