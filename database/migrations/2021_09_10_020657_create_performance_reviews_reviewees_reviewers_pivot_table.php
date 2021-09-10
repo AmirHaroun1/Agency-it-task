@@ -15,11 +15,18 @@ class CreatePerformanceReviewsRevieweesReviewersPivotTable extends Migration
     {
         Schema::create('performance_reviews_reviewees_reviewers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('performance_id');
+            $table->foreign('performance_id')
+                ->references('id')
+                ->on('performance_reviews')
+                ->onDelete('cascade');
+
             $table->foreignId('reviewee_id')->nullable();
             $table->foreign('reviewee_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+
             $table->foreignId('reviewer_id')->nullable();
             $table->foreign('reviewer_id')
                 ->references('id')
